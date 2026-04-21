@@ -182,30 +182,77 @@
       object-fit: cover;
     }
 
-    /* ── SKILLS ── */
-    .skills-grid {
+    /* ── INTERESTS & OUTREACH ── */
+    .interests-outreach {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
     }
 
-    .skill-item {
-      background: var(--card);
-      padding: 1.6rem 1.8rem;
+    .subsection-title {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
     }
 
-    .skill-item h3 {
+    .interests-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .interests-list li {
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+      color: var(--text);
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+
+    .interests-list li:last-child { border-bottom: none; }
+
+    .interests-list li::before {
+      content: '—';
+      color: var(--accent);
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .outreach-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .outreach-list li {
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .outreach-list li:last-child { border-bottom: none; }
+
+    .outreach-list .outreach-name {
       font-size: 0.95rem;
       font-weight: 500;
-      margin-bottom: 0.5rem;
+      display: block;
+      margin-bottom: 0.15rem;
     }
 
-    .skill-item p {
-      font-size: 0.85rem;
+    .outreach-list .outreach-meta {
+      font-size: 0.82rem;
       color: var(--muted);
-      line-height: 1.6;
+    }
+
+    @media (max-width: 700px) {
+      .interests-outreach { grid-template-columns: 1fr; gap: 2rem; }
     }
 
     /* ── PROJECTS ── */
@@ -239,6 +286,69 @@
       color: var(--muted);
       white-space: nowrap;
       align-self: center;
+    }
+
+    /* ── CV ── */
+    .cv-block { margin-bottom: 2.8rem; }
+    .cv-block:last-child { margin-bottom: 0; }
+
+    .cv-block-title {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cv-entry {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 1rem 2rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .cv-entry:last-child { border-bottom: none; }
+
+    .cv-year {
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding-top: 0.1rem;
+      white-space: nowrap;
+    }
+
+    .cv-details h3 {
+      font-size: 0.97rem;
+      font-weight: 500;
+      margin-bottom: 0.15rem;
+    }
+
+    .cv-details p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .cv-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      padding: 0.7rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+    .cv-download:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+
+    @media (max-width: 700px) {
+      .cv-entry { grid-template-columns: 1fr; gap: 0.3rem; }
     }
 
     /* ── CONTACT ── */
@@ -296,7 +406,6 @@
       .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
       .about-grid { grid-template-columns: 1fr; }
       .about-photo { order: -1; aspect-ratio: 4/3; }
-      .skills-grid { grid-template-columns: 1fr 1fr; }
       footer { padding-left: 1.5rem; padding-right: 1.5rem; }
     }
   </style>
@@ -308,7 +417,8 @@
     <a class="nav-logo" href="#">Your Name</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
-      <li><a href="#work">Work</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#cv">CV</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -359,70 +469,155 @@
 
   <hr class="divider">
 
-  <!-- SKILLS -->
+  <!-- INTERESTS & OUTREACH -->
   <section id="skills" class="fade-in">
     <p class="section-label">What I do</p>
-    <div class="skills-grid">
-      <div class="skill-item">
-        <h3>Skill One</h3>
-        <p>A short description of this skill or area of expertise.</p>
+    <h2>Interests &amp; outreach</h2>
+    <div class="interests-outreach">
+
+      <div>
+        <p class="subsection-title">Scientific interests</p>
+        <ul class="interests-list">
+          <li>Research interest or topic one</li>
+          <li>Research interest or topic two</li>
+          <li>Research interest or topic three</li>
+          <li>Research interest or topic four</li>
+          <li>Research interest or topic five</li>
+        </ul>
       </div>
-      <div class="skill-item">
-        <h3>Skill Two</h3>
-        <p>A short description of this skill or area of expertise.</p>
+
+      <div>
+        <p class="subsection-title">Outreach &amp; events</p>
+        <ul class="outreach-list">
+          <li>
+            <span class="outreach-name">Event or Program Name</span>
+            <span class="outreach-meta">Organization · Year · Brief role or description.</span>
+          </li>
+          <li>
+            <span class="outreach-name">Event or Program Name</span>
+            <span class="outreach-meta">Organization · Year · Brief role or description.</span>
+          </li>
+          <li>
+            <span class="outreach-name">Event or Program Name</span>
+            <span class="outreach-meta">Organization · Year · Brief role or description.</span>
+          </li>
+          <li>
+            <span class="outreach-name">Event or Program Name</span>
+            <span class="outreach-meta">Organization · Year · Brief role or description.</span>
+          </li>
+        </ul>
       </div>
-      <div class="skill-item">
-        <h3>Skill Three</h3>
-        <p>A short description of this skill or area of expertise.</p>
-      </div>
-      <div class="skill-item">
-        <h3>Skill Four</h3>
-        <p>A short description of this skill or area of expertise.</p>
-      </div>
-      <div class="skill-item">
-        <h3>Skill Five</h3>
-        <p>A short description of this skill or area of expertise.</p>
-      </div>
-      <div class="skill-item">
-        <h3>Skill Six</h3>
-        <p>A short description of this skill or area of expertise.</p>
-      </div>
+
     </div>
   </section>
 
   <hr class="divider">
 
-  <!-- PROJECTS -->
-  <section id="work" class="fade-in">
-    <p class="section-label">Selected work</p>
-    <h2>Projects I'm proud of</h2>
+  <!-- RESEARCH -->
+  <section id="research" class="fade-in">
+    <p class="section-label">Research</p>
+    <h2>Selected publications<br>&amp; research</h2>
     <div class="projects-list">
 
       <div class="project-card">
         <div class="project-info">
-          <h3>Project Name One</h3>
-          <p>A one-line description of what this project is and why it matters.</p>
+          <h3>Title of Paper or Study One</h3>
+          <p>Journal or Conference Name · 2024 · A one-sentence summary of what this research explores and its significance.</p>
         </div>
-        <span class="project-tag">Web Design</span>
+        <a href="#" class="project-tag">PDF ↗</a>
       </div>
 
       <div class="project-card">
         <div class="project-info">
-          <h3>Project Name Two</h3>
-          <p>A one-line description of what this project is and why it matters.</p>
+          <h3>Title of Paper or Study Two</h3>
+          <p>Journal or Conference Name · 2023 · A one-sentence summary of what this research explores and its significance.</p>
         </div>
-        <span class="project-tag">Development</span>
+        <a href="#" class="project-tag">PDF ↗</a>
       </div>
 
       <div class="project-card">
         <div class="project-info">
-          <h3>Project Name Three</h3>
-          <p>A one-line description of what this project is and why it matters.</p>
+          <h3>Title of Paper or Study Three</h3>
+          <p>Journal or Conference Name · 2022 · A one-sentence summary of what this research explores and its significance.</p>
         </div>
-        <span class="project-tag">Research</span>
+        <a href="#" class="project-tag">PDF ↗</a>
       </div>
 
     </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CV -->
+  <section id="cv" class="fade-in">
+    <p class="section-label">Curriculum Vitae</p>
+    <h2>Experience &amp;<br>Education</h2>
+
+    <div class="cv-block">
+      <p class="cv-block-title">Education</p>
+      <div class="cv-entry">
+        <span class="cv-year">2020 – 2024</span>
+        <div class="cv-details">
+          <h3>Ph.D. in Your Field</h3>
+          <p>University Name, City · Advisor: Prof. Name · Thesis title or focus area.</p>
+        </div>
+      </div>
+      <div class="cv-entry">
+        <span class="cv-year">2016 – 2020</span>
+        <div class="cv-details">
+          <h3>B.S. in Your Major</h3>
+          <p>University Name, City · Graduated with honors.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cv-block">
+      <p class="cv-block-title">Experience</p>
+      <div class="cv-entry">
+        <span class="cv-year">2024 – Present</span>
+        <div class="cv-details">
+          <h3>Your Current Role</h3>
+          <p>Organization or Institution · Brief description of your responsibilities and impact.</p>
+        </div>
+      </div>
+      <div class="cv-entry">
+        <span class="cv-year">2022 – 2024</span>
+        <div class="cv-details">
+          <h3>Previous Role</h3>
+          <p>Organization or Institution · Brief description of your responsibilities and impact.</p>
+        </div>
+      </div>
+      <div class="cv-entry">
+        <span class="cv-year">2020 – 2022</span>
+        <div class="cv-details">
+          <h3>Earlier Role</h3>
+          <p>Organization or Institution · Brief description of your responsibilities and impact.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cv-block">
+      <p class="cv-block-title">Awards &amp; Honors</p>
+      <div class="cv-entry">
+        <span class="cv-year">2023</span>
+        <div class="cv-details">
+          <h3>Award or Fellowship Name</h3>
+          <p>Granting organization · Brief context.</p>
+        </div>
+      </div>
+      <div class="cv-entry">
+        <span class="cv-year">2021</span>
+        <div class="cv-details">
+          <h3>Another Award</h3>
+          <p>Granting organization · Brief context.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Link to your full CV PDF — upload cv.pdf to your GitHub repo -->
+    <a href="cv.pdf" class="cv-download" target="_blank">
+      ↓ Download full CV (PDF)
+    </a>
   </section>
 
   <hr class="divider">
@@ -430,19 +625,11 @@
   <!-- CONTACT -->
   <section id="contact" class="fade-in">
     <p class="section-label">Get in touch</p>
-    <div class="contact-inner">
-      <div>
-        <h2>Let's work<br>together.</h2>
-        <p style="color: var(--muted); margin-top: 0.8rem; font-size: 0.95rem;">
-          Open to opportunities, collaborations, and interesting conversations.
-        </p>
-      </div>
-      <div class="contact-links">
-        <a href="mailto:you@email.com">Email ↗</a>
-        <a href="https://github.com/yourusername" target="_blank">GitHub ↗</a>
-        <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn ↗</a>
-        <a href="https://twitter.com/yourhandle" target="_blank">Twitter ↗</a>
-      </div>
+    <div class="contact-links">
+      <a href="mailto:you@email.com">Email ↗</a>
+      <a href="https://github.com/yourusername" target="_blank">GitHub ↗</a>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn ↗</a>
+      <a href="https://twitter.com/yourhandle" target="_blank">Twitter ↗</a>
     </div>
   </section>
 
