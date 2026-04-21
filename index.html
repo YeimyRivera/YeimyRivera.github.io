@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Name — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f5f2;
+      --ink: #1a1a18;
+      --muted: #6b6b65;
+      --accent: #c8603a;
+      --rule: #e0ddd8;
+      --card: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 6vw;
+      background: rgba(247,245,242,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 0 6vw;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero-inner { max-width: 700px; }
+    .hero-eyebrow {
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp 0.6s 0.1s forwards;
+    }
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+    .hero-bio {
+      font-size: 1.1rem; font-weight: 300;
+      color: var(--muted); max-width: 480px;
+      margin-bottom: 2.5rem;
+      opacity: 0; animation: fadeUp 0.7s 0.35s forwards;
+    }
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.7s 0.5s forwards;
+    }
+    .btn {
+      display: inline-block; padding: 0.75rem 1.8rem;
+      text-decoration: none; font-size: 0.875rem;
+      font-weight: 500; border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--ink); color: var(--bg);
+    }
+    .btn-primary:hover { background: var(--accent); }
+    .btn-outline {
+      border: 1.5px solid var(--ink); color: var(--ink);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* SECTIONS */
+    section { padding: 6rem 6vw; border-bottom: 1px solid var(--rule); }
+    .section-label {
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1rem;
+    }
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 3rem;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start;
+    }
+    .about-text p {
+      color: var(--muted); font-weight: 300;
+      font-size: 1.05rem; margin-bottom: 1rem;
+    }
+    .about-facts { display: flex; flex-direction: column; gap: 1.5rem; }
+    .fact {
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .fact:last-child { border-bottom: none; }
+    .fact-label {
+      font-size: 0.75rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    .fact-value { font-weight: 400; font-size: 0.95rem; }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      padding: 2rem;
+      border-radius: 3px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none; color: inherit;
+      display: block;
+    }
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+    }
+    .project-tag {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.8rem;
+    }
+    .project-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem; margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+    .project-desc {
+      font-size: 0.9rem; color: var(--muted);
+      font-weight: 300; line-height: 1.5;
+    }
+    .project-arrow {
+      display: inline-block; margin-top: 1.2rem;
+      font-size: 0.85rem; color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* RESUME */
+    .resume-section { margin-bottom: 3rem; }
+    .resume-section h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem; margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .resume-item { margin-bottom: 1.8rem; }
+    .resume-item-header {
+      display: flex; justify-content: space-between;
+      align-items: baseline; margin-bottom: 0.2rem;
+    }
+    .resume-role { font-weight: 500; }
+    .resume-date { font-size: 0.8rem; color: var(--muted); }
+    .resume-org { font-size: 0.9rem; color: var(--accent); margin-bottom: 0.4rem; }
+    .resume-desc { font-size: 0.9rem; color: var(--muted); font-weight: 300; }
+    .resume-download {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    /* CONTACT */
+    #contact { text-align: center; }
+    #contact h2 { margin-bottom: 1rem; }
+    .contact-sub {
+      color: var(--muted); font-weight: 300;
+      max-width: 400px; margin: 0 auto 2.5rem;
+    }
+    .contact-links {
+      display: flex; justify-content: center;
+      gap: 1.5rem; flex-wrap: wrap;
+    }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      text-decoration: none; font-size: 0.9rem;
+      font-weight: 500; color: var(--ink);
+      border-bottom: 1.5px solid var(--rule);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .contact-link:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 6vw;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.8rem; color: var(--muted);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 680px) {
+      nav { padding: 1rem 5vw; }
+      .nav-links { gap: 1.2rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .resume-item-header { flex-direction: column; gap: 0.1rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-name" href="#hero">Your Name</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Available for work</p>
+      <h1>Designer,<br><em>developer,</em><br>maker of things.</h1>
+      <p class="hero-bio">I build thoughtful digital experiences — from concept to code. Based in [Your City].</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label reveal">About</p>
+    <h2 class="reveal">A little about me.</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>Hi, I'm [Your Name] — a [your role] with a passion for [what you love]. I care deeply about craft, clarity, and building things that actually work.</p>
+        <p>When I'm not at the keyboard, you'll find me [hobby], [hobby], or exploring [interest].</p>
+      </div>
+      <div class="about-facts reveal">
+        <div class="fact">
+          <div class="fact-label">Based in</div>
+          <div class="fact-value">[Your City, Country]</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Currently</div>
+          <div class="fact-value">[Your current role or status]</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Skills</div>
+          <div class="fact-value">HTML · CSS · JavaScript · [Add yours]</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Education</div>
+          <div class="fact-value">[Your Degree, University]</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label reveal">Projects</p>
+    <h2 class="reveal">Things I've built.</h2>
+    <div class="projects-grid">
+      <a href="#" class="project-card reveal">
+        <span class="project-tag">Web App</span>
+        <div class="project-title">Project One</div>
+        <p class="project-desc">A short description of what this project does and why it matters. Replace this with your real project.</p>
+        <span class="project-arrow">View project →</span>
+      </a>
+      <a href="#" class="project-card reveal">
+        <span class="project-tag">Design</span>
+        <div class="project-title">Project Two</div>
+        <p class="project-desc">A short description of what this project does and why it matters. Replace this with your real project.</p>
+        <span class="project-arrow">View project →</span>
+      </a>
+      <a href="#" class="project-card reveal">
+        <span class="project-tag">Open Source</span>
+        <div class="project-title">Project Three</div>
+        <p class="project-desc">A short description of what this project does and why it matters. Replace this with your real project.</p>
+        <span class="project-arrow">View project →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section id="resume">
+    <p class="section-label reveal">Resume</p>
+    <h2 class="reveal">Experience &amp; education.</h2>
+
+    <div class="resume-section reveal">
+      <h3>Work Experience</h3>
+      <div class="resume-item">
+        <div class="resume-item-header">
+          <span class="resume-role">Job Title</span>
+          <span class="resume-date">2022 — Present</span>
+        </div>
+        <div class="resume-org">Company Name</div>
+        <p class="resume-desc">Brief description of your responsibilities and accomplishments in this role.</p>
+      </div>
+      <div class="resume-item">
+        <div class="resume-item-header">
+          <span class="resume-role">Previous Job Title</span>
+          <span class="resume-date">2020 — 2022</span>
+        </div>
+        <div class="resume-org">Previous Company</div>
+        <p class="resume-desc">Brief description of your responsibilities and accomplishments in this role.</p>
+      </div>
+    </div>
+
+    <div class="resume-section reveal">
+      <h3>Education</h3>
+      <div class="resume-item">
+        <div class="resume-item-header">
+          <span class="resume-role">Degree Name</span>
+          <span class="resume-date">2016 — 2020</span>
+        </div>
+        <div class="resume-org">University Name</div>
+        <p class="resume-desc">Major, any honors or relevant coursework.</p>
+      </div>
+    </div>
+
+    <a href="resume.pdf" class="btn btn-outline resume-download reveal">Download Full Resume ↓</a>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label reveal">Contact</p>
+    <h2 class="reveal">Let's work together.</h2>
+    <p class="contact-sub reveal">Have a project in mind or just want to say hello? I'd love to hear from you.</p>
+    <div class="contact-links reveal">
+      <a href="mailto:you@email.com" class="contact-link">✉ you@email.com</a>
+      <a href="https://linkedin.com/in/yourhandle" class="contact-link" target="_blank">LinkedIn</a>
+      <a href="https://github.com/yourusername" class="contact-link" target="_blank">GitHub</a>
+      <a href="https://twitter.com/yourhandle" class="contact-link" target="_blank">Twitter</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Your Name</span>
+    <span>Built with HTML &amp; CSS</span>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
