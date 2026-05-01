@@ -219,6 +219,23 @@
 
     .interests-list li:last-child { border-bottom: none; }
 
+    .research-im {
+      width: 100%;
+      aspect-ratio: 1/2;
+      background: var(--border);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      overflow: hidden;
+    }
+
+    .research-im img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+
     .interests-list li::before {
       content: '—';
       color: var(--accent);
@@ -485,7 +502,7 @@
         </ul>
       </div>
 
-      <div class="about-photo">
+      <div class="research-im">
         <!-- Replace the src below with your image file, e.g. src="photo.jpg" -->
          <img src="Figure1_FINAL.png" alt="Spacecraft Coordination">
         <!-- <span>Your photo here<br><small>Replace with &lt;img src="YJR.jpg"&gt;</small></span> -->
