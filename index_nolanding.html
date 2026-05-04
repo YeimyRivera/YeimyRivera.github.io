@@ -60,15 +60,20 @@
     .nav-links a:hover { color: var(--text); }
 
     /* ── HERO ── */
-    .hero {
+   .hero {
       min-height: 100vh;
       display: flex; align-items: center;
       padding: 8rem 4rem 4rem;
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
+      gap: 4rem;
     }
 
-    .hero-inner { animation: fadeUp 0.8s 0.2s ease both; }
+    .hero-inner {
+      animation: fadeUp 0.8s 0.2s ease both;
+      flex: 1;
+      min-width: 0;
+    }
 
     .hero-sun-wrap {
       flex: 0 0 500px;
