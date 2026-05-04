@@ -542,45 +542,67 @@
         <p class="subsection-title">Areas of expertise</p>
         <ul class="interests-list">
 
-          <li>Heating and acceleration of the solar wind and transients</li>
-          <li>Variation of heavy ion and elemental abundances in the corona and solar wind</li>
-          <li>Sun-heliosphere connection science and solar wind origins</li>
+          <li>
+            <!-- Replace href with your page or external URL for interest 1 -->
+            <a href="solar-wind-heating.html"
+               onmouseenter="showPanel('interest-1')"
+               onmouseleave="resetPanel()">
+              Heating and acceleration of the solar wind and transients
+            </a>
+          </li>
+
+          <li>
+            <!-- Replace href with your page or external URL for interest 2 -->
+            <a href="ion-abundances.html"
+               onmouseenter="showPanel('interest-2')"
+               onmouseleave="resetPanel()">
+              Variation of heavy ion and elemental abundances in the corona and solar wind
+            </a>
+          </li>
+
+          <li>
+            <!-- Replace href with your page or external URL for interest 3 -->
+            <a href="sun-heliosphere.html"
+               onmouseenter="showPanel('interest-3')"
+               onmouseleave="resetPanel()">
+              Sun-heliosphere connection science and solar wind origins
+            </a>
+          </li>
+
         </ul>
       </div>
 
-      <!-- <div class="research-im">
-        <! -- Replace the src below with your image file, e.g. src="photo.jpg" -->
-         <!-- <img src="Sun_dipole.png" alt="Solar Dipole"> -->
-        <!-- <span>Your photo here<br><small>Replace with &lt;img src="YJR.jpg"&gt;</small></span> -->
-      <!-- </div>  -->
+      <!-- Hover image panel — replace image src filenames with your own images -->
+      <div class="interest-image-panel" id="interest-panel">
 
-      <video width="500" height="450" controls>
-        <source src="sun_evolving.mp4" type="video/mp4">
-      </video>
+        <!-- Default state (no hover) — you can replace this with a default image too -->
+        <div class="panel-slide active" id="panel-default">
+          <div class="panel-default-placeholder">
+            Hover over an interest to see more
+          </div>
+        </div>
 
-      <!-- <div>
-        <p class="subsection-title">Outreach &amp; events</p>
-        <ul class="outreach-list">
-          <li>
-            <span class="outreach-name">Event or Program Name</span>
-            <span class="outreach-meta">Organization · Year · Brief role or description.</span>
-          </li>
-          <li>
-            <span class="outreach-name">Event or Program Name</span>
-            <span class="outreach-meta">Organization · Year · Brief role or description.</span>
-          </li>
-          <li>
-            <span class="outreach-name">Event or Program Name</span>
-            <span class="outreach-meta">Organization · Year · Brief role or description.</span>
-          </li>
-          <li>
-            <span class="outreach-name">Event or Program Name</span>
-            <span class="outreach-meta">Organization · Year · Brief role or description.</span>
-          </li>
-        </ul>
+        <!-- Interest 1: replace src="interest1.jpg" with your image filename -->
+        <div class="panel-slide" id="panel-interest-1">
+          <img src="interest1.jpg" alt="Heating and acceleration of the solar wind">
+          <div class="panel-caption">Heating &amp; acceleration of the solar wind</div>
+        </div>
+
+        <!-- Interest 2: replace src="interest2.jpg" with your image filename -->
+        <div class="panel-slide" id="panel-interest-2">
+          <img src="interest2.jpg" alt="Heavy ion and elemental abundances">
+          <div class="panel-caption">Heavy ion &amp; elemental abundances</div>
+        </div>
+
+        <!-- Interest 3: replace src="interest3.jpg" with your image filename -->
+        <div class="panel-slide" id="panel-interest-3">
+          <img src="interest3.jpg" alt="Sun-heliosphere connection">
+          <div class="panel-caption">Sun-heliosphere connection &amp; solar wind origins</div>
+        </div>
+
       </div>
 
-    </div> -->
+    </div>
   </section>
 
   <hr class="divider">
