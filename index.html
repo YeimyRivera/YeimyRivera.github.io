@@ -247,6 +247,13 @@
 
     .interests-list li:last-child { border-bottom: none; }
 
+    .interests-list li a::before {
+      content: '—';
+      color: var(--accent);
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
      /* ── HOVER IMAGE PANEL ── */
     .interest-image-panel {
       position: relative;
