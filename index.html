@@ -247,6 +247,35 @@
 
     .interests-list li:last-child { border-bottom: none; }
 
+    /* .research-im {
+      width: 100%;
+      aspect-ratio: 1;
+      background: var(--border);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      overflow: hidden;
+    } */
+
+    .research-im img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+
+    .interests-list li a {
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      width: 100%;
+      transition: color 0.2s;
+    }
+
+    .interests-list li a:hover { color: var(--accent); }
+
     .interests-list li a::before {
       content: '—';
       color: var(--accent);
@@ -254,7 +283,7 @@
       flex-shrink: 0;
     }
 
-     /* ── HOVER IMAGE PANEL ── */
+    /* ── HOVER IMAGE PANEL ── */
     .interest-image-panel {
       position: relative;
       width: 100%;
@@ -302,30 +331,6 @@
       font-size: 0.85rem;
       text-align: center;
       padding: 1rem;
-    }
-
-    /* .research-im {
-      width: 100%;
-      aspect-ratio: 1;
-      background: var(--border);
-      border-radius: 2px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--muted);
-      font-size: 0.85rem;
-      overflow: hidden;
-    } */
-
-    .research-im img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-    }
-
-
-    .interests-list li::before {
-      content: '—';
-      color: var(--accent);
-      font-size: 0.8rem;
-      flex-shrink: 0;
     }
 
     .outreach-list {
