@@ -64,39 +64,11 @@
       min-height: 100vh;
       display: flex; align-items: center;
       padding: 8rem 4rem 4rem;
-      max-width: 1000px;
+      max-width: 900px;
       margin: 0 auto;
-      gap: 4rem;
     }
 
-    .hero-inner {
-      animation: fadeUp 0.8s 0.2s ease both;
-      flex: 1;
-      min-width: 0;
-    }
-
-    .hero-sun-wrap {
-      flex: 0 0 300px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      animation: fadeUp 0.8s 0.4s ease both;
-    }
-
-    .hero-sun-wrap img {
-      width: 100%;
-      border-radius: 50%;
-      display: block;
-      box-shadow: 0 0 60px rgba(255, 140, 30, 0.25), 0 0 120px rgba(255, 100, 0, 0.1);
-    }
-
-    .hero-sun-caption {
-      margin-top: 0.75rem;
-      font-size: 0.72rem;
-      color: var(--muted);
-      text-align: center;
-      letter-spacing: 0.03em;
-    }
+    .hero-inner { animation: fadeUp 0.8s 0.2s ease both; }
 
     .hero-eyebrow {
       font-size: 0.82rem;
@@ -264,11 +236,73 @@
     }
 
 
-    .interests-list li::before {
+    .interests-list li a {
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      width: 100%;
+      transition: color 0.2s;
+    }
+
+    .interests-list li a:hover { color: var(--accent); }
+
+    .interests-list li a::before {
       content: '—';
       color: var(--accent);
       font-size: 0.8rem;
       flex-shrink: 0;
+    }
+
+    /* ── HOVER IMAGE PANEL ── */
+    .interest-image-panel {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: 2px;
+      overflow: hidden;
+      background: var(--border);
+    }
+
+    .interest-image-panel .panel-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .interest-image-panel .panel-slide.active {
+      opacity: 1;
+    }
+
+    .interest-image-panel .panel-slide img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .panel-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 0.8rem 1rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.55));
+      color: #fff;
+      font-size: 0.78rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .interest-image-panel .panel-slide.active .panel-caption {
+      opacity: 1;
+    }
+
+    .panel-default-placeholder {
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 1rem;
     }
 
     .outreach-list {
@@ -445,10 +479,6 @@
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 780px) {
-      .hero { flex-direction: column-reverse; gap: 2rem; padding-top: 7rem; }
-      .hero-sun-wrap { flex: none; width: 200px; }
-    }
     @media (max-width: 700px) {
       nav { padding: 1.2rem 1.5rem; }
       .nav-links { gap: 1.5rem; }
@@ -486,19 +516,6 @@
         <a href="#contact" class="btn btn-outline">Get in touch</a>
       </div>
     </div>
-
-    <!-- Live SDO/AIA 171Å EUV image of the Sun, served directly from NASA -->
-    <div class="hero-sun-wrap">
-      <img
-        src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_1024_0171.jpg"
-        alt="The Sun in extreme ultraviolet light (171Å) from SDO/AIA"
-      />
-      <p class="hero-sun-caption">
-        The Sun in EUV (171 Å) · SDO/AIA · NASA<br>
-        <span style="font-size:0.68rem; opacity:0.7;">Image updates automatically from NASA</span>
-      </p>
-    </div>
-
   </div>
 
   <hr class="divider">
@@ -542,45 +559,67 @@
         <p class="subsection-title">Areas of expertise</p>
         <ul class="interests-list">
 
-          <li>Heating and acceleration of the solar wind and transients</li>
-          <li>Variation of heavy ion and elemental abundances in the corona and solar wind</li>
-          <li>Sun-heliosphere connection science and solar wind origins</li>
+          <li>
+            <!-- Replace href with your page or external URL for interest 1 -->
+            <a href="solar-wind-heating.html"
+               onmouseenter="showPanel('interest-1')"
+               onmouseleave="resetPanel()">
+              Heating and acceleration of the solar wind and transients
+            </a>
+          </li>
+
+          <li>
+            <!-- Replace href with your page or external URL for interest 2 -->
+            <a href="ion-abundances.html"
+               onmouseenter="showPanel('interest-2')"
+               onmouseleave="resetPanel()">
+              Variation of heavy ion and elemental abundances in the corona and solar wind
+            </a>
+          </li>
+
+          <li>
+            <!-- Replace href with your page or external URL for interest 3 -->
+            <a href="sun-heliosphere.html"
+               onmouseenter="showPanel('interest-3')"
+               onmouseleave="resetPanel()">
+              Sun-heliosphere connection science and solar wind origins
+            </a>
+          </li>
+
         </ul>
       </div>
 
-      <!-- <div class="research-im">
-        <! -- Replace the src below with your image file, e.g. src="photo.jpg" -->
-         <!-- <img src="Sun_dipole.png" alt="Solar Dipole"> -->
-        <!-- <span>Your photo here<br><small>Replace with &lt;img src="YJR.jpg"&gt;</small></span> -->
-      <!-- </div>  -->
+      <!-- Hover image panel — replace image src filenames with your own images -->
+      <div class="interest-image-panel" id="interest-panel">
 
-      <video width="500" height="450" controls>
-        <source src="sun_evolving.mp4" type="video/mp4">
-      </video>
+        <!-- Default state (no hover) — you can replace this with a default image too -->
+        <div class="panel-slide active" id="panel-default">
+          <div class="panel-default-placeholder">
+            Hover over an interest to see more
+          </div>
+        </div>
 
-      <!-- <div>
-        <p class="subsection-title">Outreach &amp; events</p>
-        <ul class="outreach-list">
-          <li>
-            <span class="outreach-name">Event or Program Name</span>
-            <span class="outreach-meta">Organization · Year · Brief role or description.</span>
-          </li>
-          <li>
-            <span class="outreach-name">Event or Program Name</span>
-            <span class="outreach-meta">Organization · Year · Brief role or description.</span>
-          </li>
-          <li>
-            <span class="outreach-name">Event or Program Name</span>
-            <span class="outreach-meta">Organization · Year · Brief role or description.</span>
-          </li>
-          <li>
-            <span class="outreach-name">Event or Program Name</span>
-            <span class="outreach-meta">Organization · Year · Brief role or description.</span>
-          </li>
-        </ul>
+        <!-- Interest 1: replace src="interest1.jpg" with your image filename -->
+        <div class="panel-slide" id="panel-interest-1">
+          <img src="interest1.jpg" alt="Heating and acceleration of the solar wind">
+          <div class="panel-caption">Heating &amp; acceleration of the solar wind</div>
+        </div>
+
+        <!-- Interest 2: replace src="interest2.jpg" with your image filename -->
+        <div class="panel-slide" id="panel-interest-2">
+          <img src="interest2.jpg" alt="Heavy ion and elemental abundances">
+          <div class="panel-caption">Heavy ion &amp; elemental abundances</div>
+        </div>
+
+        <!-- Interest 3: replace src="interest3.jpg" with your image filename -->
+        <div class="panel-slide" id="panel-interest-3">
+          <img src="interest3.jpg" alt="Sun-heliosphere connection">
+          <div class="panel-caption">Sun-heliosphere connection &amp; solar wind origins</div>
+        </div>
+
       </div>
 
-    </div> -->
+    </div>
   </section>
 
   <hr class="divider">
@@ -741,6 +780,19 @@ Flow in the Inner Heliosphere </h3>
     <p>© 2026 Yeimy Rivera. All rights reserved.</p>
     <p>Built with HTML & CSS</p>
   </footer>
+
+  <!-- Hover image swap for scientific interests -->
+  <script>
+    function showPanel(id) {
+      document.querySelectorAll('.panel-slide').forEach(el => el.classList.remove('active'));
+      const target = document.getElementById('panel-' + id);
+      if (target) target.classList.add('active');
+    }
+    function resetPanel() {
+      document.querySelectorAll('.panel-slide').forEach(el => el.classList.remove('active'));
+      document.getElementById('panel-default').classList.add('active');
+    }
+  </script>
 
   <!-- Scroll animation -->
   <script>
