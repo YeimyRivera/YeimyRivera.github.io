@@ -60,7 +60,7 @@
     .nav-links a:hover { color: var(--text); }
 
     /* ── HERO ── */
-   .hero {
+    .hero {
       min-height: 100vh;
       display: flex; align-items: center;
       padding: 8rem 4rem 4rem;
@@ -507,6 +507,10 @@
     }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 780px) {
+      .hero { flex-direction: column-reverse; gap: 2rem; padding-top: 7rem; }
+      .hero-sun-wrap { flex: none; width: 200px; }
+    }
     @media (max-width: 700px) {
       nav { padding: 1.2rem 1.5rem; }
       .nav-links { gap: 1.5rem; }
@@ -531,7 +535,7 @@
     </ul>
   </nav>
 
-   <!-- HERO -->
+  <!-- HERO -->
   <div class="hero">
     <div class="hero-inner">
       <!-- <p class="hero-eyebrow"> /p> -->
@@ -636,27 +640,29 @@
         <!-- Default state (no hover) — you can replace this with a default image too -->
         <div class="panel-slide active" id="panel-default">
           <div class="panel-default-placeholder">
-            Hover over an interest to see more
+             <img src="ESA_fastwind.png" alt="Heating and acceleration of the solar wind">
+              <div class="panel-caption">Heating &amp; acceleration of the solar wind</div>
+            <!-- Hover over an interest to see more -->
           </div>
         </div>
 
-        <!-- Interest 1: replace src="interest1.jpg" with your image filename -->
+        <!-- Interest 1: replace src="interest1.jpg" with your image filename
         <div class="panel-slide" id="panel-interest-1">
-          <img src="interest1.jpg" alt="Heating and acceleration of the solar wind">
+          <img src="ESA_fastwind.png" alt="Heating and acceleration of the solar wind">
           <div class="panel-caption">Heating &amp; acceleration of the solar wind</div>
         </div>
 
         <!-- Interest 2: replace src="interest2.jpg" with your image filename -->
-        <div class="panel-slide" id="panel-interest-2">
-          <img src="interest2.jpg" alt="Heavy ion and elemental abundances">
+        <!-- <div class="panel-slide" id="panel-interest-2">
+          <img src="Parker_211_E23_field_lines.png" alt="Heavy ion and elemental abundances">
           <div class="panel-caption">Heavy ion &amp; elemental abundances</div>
-        </div>
+        </div> -->
 
         <!-- Interest 3: replace src="interest3.jpg" with your image filename -->
-        <div class="panel-slide" id="panel-interest-3">
+        <!-- <div class="panel-slide" id="panel-interest-3">
           <img src="interest3.jpg" alt="Sun-heliosphere connection">
           <div class="panel-caption">Sun-heliosphere connection &amp; solar wind origins</div>
-        </div>
+        </div> -->
 
       </div>
 
@@ -821,19 +827,6 @@ Flow in the Inner Heliosphere </h3>
     <p>© 2026 Yeimy Rivera. All rights reserved.</p>
     <p>Built with HTML & CSS</p>
   </footer>
-
-  <!-- Hover image swap for scientific interests -->
-  <script>
-    function showPanel(id) {
-      document.querySelectorAll('.panel-slide').forEach(el => el.classList.remove('active'));
-      const target = document.getElementById('panel-' + id);
-      if (target) target.classList.add('active');
-    }
-    function resetPanel() {
-      document.querySelectorAll('.panel-slide').forEach(el => el.classList.remove('active'));
-      document.getElementById('panel-default').classList.add('active');
-    }
-  </script>
 
   <!-- Scroll animation -->
   <script>
