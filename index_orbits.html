@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Name — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f9f7f4;
+      --text: #1a1a1a;
+      --muted: #888;
+      --accent: #2c5f4a;
+      --border: #e2ddd8;
+      --card: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 4rem;
+      background: rgba(249,247,244,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+   .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 4rem 4rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      gap: 4rem;
+    }
+
+    .hero-inner {
+      animation: fadeUp 0.8s 0.2s ease both;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .hero-sun-wrap {
+      flex: 0 0 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+
+    .hero-sun-wrap img {
+      width: 100%;
+      border-radius: 80%;
+      display: block;
+      box-shadow: 0 0 60px rgba(255, 140, 30, 0.25), 0 0 120px rgba(255, 100, 0, 0.1);
+    }
+
+    .hero-sun-caption {
+      margin-top: 0.75rem;
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-align: center;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.4rem;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.1;
+      font-weight: 400;
+      margin-bottom: 1.6rem;
+      color: var(--text);
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-bio {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 2.8rem;
+      line-height: 1.8;
+    }
+
+    .hero-cta {
+      display: inline-flex; gap: 1rem; flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.75rem 1.8rem;
+      border-radius: 2px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+    }
+    .btn-primary:hover { background: var(--accent); }
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: transparent;
+    }
+    .btn-outline:hover { border-color: var(--text); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      max-width: 900px; margin: 0 auto;
+      border: none; border-top: 1px solid var(--border);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 4rem;
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      font-weight: 500;
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 400;
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p { color: #555; margin-bottom: 1rem; }
+
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--border);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      overflow: hidden;
+    }
+
+    .about-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── INTERESTS & OUTREACH ── */
+    .interests-outreach {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .subsection-title {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .interests-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .interests-list li {
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+      color: var(--text);
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+
+    .interests-list li:last-child { border-bottom: none; }
+
+    /* .research-im {
+      width: 100%;
+      aspect-ratio: 1;
+      background: var(--border);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      overflow: hidden;
+    } */
+
+    .research-im img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+
+    .interests-list li a {
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      width: 100%;
+      transition: color 0.2s;
+    }
+
+    .interests-list li a:hover { color: var(--accent); }
+
+    .interests-list li a::before {
+      content: '—';
+      color: var(--accent);
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    /* ── HOVER IMAGE PANEL ── */
+    .interest-image-panel {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: 2px;
+      overflow: hidden;
+      background: var(--border);
+    }
+
+    .interest-image-panel .panel-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .interest-image-panel .panel-slide.active {
+      opacity: 1;
+    }
+
+    .interest-image-panel .panel-slide img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .panel-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 0.8rem 1rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.55));
+      color: #fff;
+      font-size: 0.78rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .interest-image-panel .panel-slide.active .panel-caption {
+      opacity: 1;
+    }
+
+    .panel-default-placeholder {
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .outreach-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .outreach-list li {
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .outreach-list li:last-child { border-bottom: none; }
+
+    .outreach-list .outreach-name {
+      font-size: 0.95rem;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    .outreach-list .outreach-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 700px) {
+      .interests-outreach { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    /* ── PROJECTS ── */
+    .projects-list { display: flex; flex-direction: column; gap: 0; }
+
+    .project-card {
+      display: flex; align-items: flex-start;
+      justify-content: space-between;
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--border);
+      gap: 2rem;
+      transition: background 0.2s;
+    }
+    .project-card:first-child { border-top: 1px solid var(--border); }
+
+    .project-info h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+    .project-info p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .project-tag {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.8rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--muted);
+      white-space: nowrap;
+      align-self: center;
+    }
+
+    /* ── CV ── */
+    .cv-block { margin-bottom: 2.8rem; }
+    .cv-block:last-child { margin-bottom: 0; }
+
+    .cv-block-title {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cv-entry {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 1rem 2rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .cv-entry:last-child { border-bottom: none; }
+
+    .cv-year {
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding-top: 0.1rem;
+      white-space: nowrap;
+    }
+
+    .cv-details h3 {
+      font-size: 0.97rem;
+      font-weight: 500;
+      margin-bottom: 0.15rem;
+    }
+
+    .cv-details p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .cv-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      padding: 0.7rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+    .cv-download:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+
+    @media (max-width: 700px) {
+      .cv-entry { grid-template-columns: 1fr; gap: 0.3rem; }
+    }
+
+    /* ── CONTACT ── */
+    .contact-inner {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      flex-wrap: wrap; gap: 2rem;
+    }
+
+    .contact-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .contact-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 400;
+      transition: color 0.2s;
+      letter-spacing: 0.02em;
+    }
+    .contact-links a:hover { color: var(--text); }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: 900px; margin: 0 auto;
+      padding: 2rem 4rem 3rem;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+
+    footer p { font-size: 0.82rem; color: var(--muted); }
+
+
+    /* ── ORBITAL PLOT ── */
+    .orbital-section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 5rem 4rem;
+    }
+
+    .orbital-container {
+      position: relative;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 4px;
+      border: 1px solid #e2ddd8;
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+
+    #orbital-canvas {
+      display: block;
+      width: 100%;
+    }
+
+    .orbital-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.6rem;
+      margin-top: 1.2rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .legend-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .orbital-note {
+      margin-top: 0.9rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      opacity: 0.7;
+    }
+
+    .orbital-loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 480px;
+      color: #555;
+      font-size: 0.9rem;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .orbital-spinner {
+      width: 32px; height: 32px;
+      border: 3px solid #ddd;
+      border-top-color: #2c5f4a;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .orbital-tooltip {
+      position: absolute;
+      background: rgba(255,255,255,0.96);
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      padding: 0.5rem 0.8rem;
+      font-size: 0.78rem;
+      color: #222;
+      pointer-events: none;
+      display: none;
+      white-space: nowrap;
+      z-index: 10;
+    }
+
+    @media (max-width: 700px) {
+      .orbital-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo { order: -1; aspect-ratio: 4/3; }
+      footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">Dr. Yeimy J. Rivera</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#science_interests">Scientific Interests</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#cv">CV</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+   <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <!-- <p class="hero-eyebrow"> /p> -->
+      <h2>I'm Yeimy Rivera, a solar Astrophysicist studying our local neighborhood star. </h2>
+      <p class="hero-bio">
+        
+      </p>
+      <div class="hero-cta">
+        <a href="#research" class="btn btn-primary">See my work</a>
+        <a href="#contact" class="btn btn-outline">Get in touch</a>
+      </div>
+    </div>
+
+    <!-- Live SDO/AIA 171Å EUV image of the Sun, served directly from NASA -->
+    <div class="hero-sun-wrap">
+      <img
+        src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_4096_0211pfss.jpg"
+        alt="The Sun right now in extreme ultraviolet light (211Å) from SDO/AIA"
+      />
+      <p class="hero-sun-caption">
+        The Sun right now in EUV (211 Å) with a simulated coronal magnetic field· SDO/AIA · NASA<br>
+        <span style="font-size:0.68rem; opacity:0.7;">Image updates automatically from NASA</span>
+      </p>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- ABOUT -->
+  <section id="about" class="fade-in">
+    <p class="section-label">About me</p>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2>A little about me</h2>
+        <p>
+          I am a scientist working in solar physics research. I grew up in sunny Los Angeles and now 
+          live in snowy Boston.
+        </p>
+        <p>
+          I am interested in understanding how the Sun works. To do this, I study the Sun up close using light emitted from its atmosphere
+           and far away using measurements of solar material scooped up by instruments around the solar system. I am part of NASA's Parker Solar Probe and ESA's Solar Orbiter missions. 
+           I particularly enjoy coordinating telescopes to capture rare views of the solar corona during total solar eclipses. 
+        </p>
+        <!-- <p>
+          
+        </p> -->
+      </div>
+      <div class="about-photo">
+        <!-- Replace the src below with your image file, e.g. src="photo.jpg" -->
+         <img src="YJR.jpg" alt="Yeimy Rivera">
+        <!-- <span>Your photo here<br><small>Replace with &lt;img src="YJR.jpg"&gt;</small></span> -->
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- SPACECRAFT POSITIONS -->
+  <section class="orbital-section fade-in" id="where-are-they">
+    <p class="section-label">Solar System</p>
+    <h2>Where are the spacecraft now?</h2>
+    <p style="color:var(--muted); font-size:0.95rem; margin-top:0.5rem; max-width:600px;">
+      Live orbital positions of key heliophysics missions and inner planets — past 10 days, today, and next 10 days. Data from NASA JPL Horizons.
+    </p>
+<!-- 
+    <div class="orbital-container">
+      <canvas id="orbital-canvas"></canvas>
+      <div class="orbital-tooltip" id="orbital-tooltip"></div>
+      <div class="orbital-loading" id="orbital-loading">
+        <div class="orbital-spinner"></div>
+        <span>Fetching positions from NASA JPL Horizons…</span> -->
+      <!-- </div> -->
+
+      <section>
+    <h2>Current Orbit Positions</h2>
+    <iframe src="space_map.html" width="100%" height="600px" style="border:none;"></iframe>
+    </section>
+
+    </div>
+
+    <div class="orbital-legend" id="orbital-legend"></div>
+    <p class="orbital-note">Positions in the HEEQ frame, ecliptic top-down view. Solid trail = past 10 days · Filled dot = today · Dashed = next 10 days · Credit: NASA JPL Horizons</p>
+  </section>
+
+  <hr class="divider">
+
+  <!-- INTERESTS & OUTREACH -->
+  <section id="science_interests" class="fade-in">
+    <p class="section-label">What I do</p>
+    <h2>Scientific Interests</h2>
+    <div class="interests-outreach">
+
+      <div>
+        <p class="subsection-title">Areas of expertise</p>
+        <ul class="interests-list">
+
+          <li>
+            <!-- Replace href with your page or external URL for interest 1 -->
+            <a href="solar-wind-heating.html"
+               onmouseenter="showPanel('interest-1')"
+               onmouseleave="resetPanel()">
+              Heating and acceleration of the solar wind and transients
+            </a>
+          </li>
+
+          <li>
+            <!-- Replace href with your page or external URL for interest 2 -->
+            <a href="ion-abundances.html"
+               onmouseenter="showPanel('interest-2')"
+               onmouseleave="resetPanel()">
+              Variation of heavy ion and elemental abundances in the corona and solar wind
+            </a>
+          </li>
+
+          <li>
+            <!-- Replace href with your page or external URL for interest 3 -->
+            <a href="sun-heliosphere.html"
+               onmouseenter="showPanel('interest-3')"
+               onmouseleave="resetPanel()">
+              Sun-heliosphere connection science and solar wind origins
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+      <!-- Hover image panel — replace image src filenames with your own images -->
+      <div class="interest-image-panel" id="interest-panel">
+
+        <!-- Default state (no hover) — you can replace this with a default image too -->
+        <div class="panel-slide active" id="panel-default">
+          <div class="panel-default-placeholder">
+            Hover over an interest to see more
+          </div>
+        </div>
+
+        <!-- Interest 1: replace src="interest1.jpg" with your image filename -->
+        <div class="panel-slide" id="panel-interest-1">
+          <img src="ESA_fastwind.png" alt="Heating and acceleration of the solar wind">
+          <div class="panel-caption">Heating &amp; acceleration of the solar wind</div>
+        </div>
+
+        <!-- Interest 2: replace src="interest2.jpg" with your image filename -->
+        <div class="panel-slide" id="panel-interest-2">
+          <img src="Parker_211_E23_field_lines.png" alt="Heavy ion and elemental abundances">
+          <div class="panel-caption">Heavy ion &amp; elemental abundances</div>
+        </div>
+
+        <!-- Interest 3: replace src="interest3.jpg" with your image filename -->
+        <div class="panel-slide" id="panel-interest-3">
+          <img src="interest3.jpg" alt="Sun-heliosphere connection">
+          <div class="panel-caption">Sun-heliosphere connection &amp; solar wind origins</div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- RESEARCH -->
+  <section id="research" class="fade-in">
+    <p class="section-label">Research</p>
+    <h2>Selected publications<br>&amp; research</h2>
+    <div class="projects-list">
+
+      <div class="project-card">
+        <div class="project-info">
+          <h3>In situ observations of large-amplitude Alfvén waves heating and accelerating the solar wind</h3>
+          <p>Science · 2024 · This work determines that large-amplitude Alfvén waves, known as magnetic "switchbacks," 
+            provide sufficient energy through damping and mechanical work to drive the heating and 
+            acceleration of the fast solar wind in the inner heliosphere. </p>
+        </div>
+        <a href="Science.pdf" class="project-tag">PDF ↗</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-info">
+          <h3>Differentiating the Acceleration Mechanisms in the Slow and Alfvénic Slow Solar Wind</h3>
+          <p>The Astrophysical Journal · 2025 · This work indicates that Alfvénic slow solar wind has contributions to its acceleration from both wave pressure and thermal pressure gradients, 
+            while non-Alfvénic slow wind is driven mainly by thermal pressure gradients.</p>
+        </div>
+        <a href="Rivera_2025_ApJ_980_70.pdf" class="project-tag">PDF ↗</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-info">
+          <h3>Observational Constraints on the Radial Evolution of O6+ Temperature and Differential
+Flow in the Inner Heliosphere </h3>
+          <p>The Astrophysical Journal Letters · 2025 · Analysis of O6+ ions between 0.3 and 1 au indicates that their relative drift and temperature ratio to protons decrease with distance, 
+            following an adiabatic cooling profile that suggests heavy ion heating occurs primarily within 0.3 au of the Sun. </p>
+        </div>
+        <a href="Rivera_2025_ApJL_990_L60.pdf" class="project-tag">PDF ↗</a>
+      </div>
+
+    </div>
+
+    <div class="project-card">
+        <div class="project-info">
+          <h3>Mixed Source Region Signatures inside Magnetic Switchback </h3>
+          <p>The Astrophysical Journal · 2024 · Based on heavy ion diagnostics from the Solar Orbiter and Parker Solar Probe, 
+            this study found that magnetic switchback patches lack unique elemental or ion composition compared to surrounding solar wind
+          suggesting they are simply embedded within a larger solar wind structure. </p>
+        </div>
+        <a href="Rivera_2024_ApJ_974_198.pdf" class="project-tag">PDF ↗</a>
+      </div>
+
+    </div>
+
+  </section>
+
+  <hr class="divider">
+
+  <!-- CV -->
+  <section id="cv" class="fade-in">
+    <p class="section-label">Curriculum Vitae</p>
+    <h2>Experience &amp;<br>Education</h2>
+
+    <div class="cv-block">
+      <p class="cv-block-title">Education</p>
+      <div class="cv-entry">
+        <span class="cv-year">2016 – 2020</span>
+        <div class="cv-details">
+          <h3>Ph.D. in Space Science</h3>
+          <p>University of Michigan, Ann Arbor, MI</p>
+          <p> Thesis: Investigating nonequilibrium ionization 
+            and recombination processes in solar wind and 
+            transient plasma using remote sensing and in situ observations </p>
+        </div>
+      </div>
+      <!-- <div class="cv-entry">
+        <span class="cv-year">2016 – 2020</span>
+        <div class="cv-details">
+          <h3>Master's in Physics</h3>
+          <p>Calfornia State University, Northridge (CSUN), Northridge, CA</p>
+        </div>
+      </div>
+
+      <div class="cv-entry">
+        <span class="cv-year">2004 – 2008</span>
+        <div class="cv-details">
+          <h3>B.S. in Astrophysics</h3>
+          <p> UCLA, Los Angeles, CA</p>
+        </div>
+      </div> -->
+    </div>
+
+    <div class="cv-block">
+      <p class="cv-block-title">Experience</p>
+      <div class="cv-entry">
+        <span class="cv-year">2023 – Present</span>
+        <div class="cv-details">
+          <h3>Astrophysicist</h3>
+          <p>Smithsonian Astrophysical Observatory</p>
+        </div>
+      </div>
+      <div class="cv-entry">
+        <span class="cv-year">2020 – 2023</span>
+        <div class="cv-details">
+          <h3>Postdoctoral Researcher</h3>
+          <p>Harvard College Observatory</p>
+        </div>
+      </div>
+      <div class="cv-entry">
+        <span class="cv-year">2016 – 2020</span>
+        <div class="cv-details">
+          <h3>Graduate Student Researcher</h3>
+          <p>University of Michigan</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cv-block">
+      <p class="cv-block-title">Awards &amp; Honors</p>
+      <div class="cv-entry">
+        <span class="cv-year">2020-2023</span>
+        <div class="cv-details">
+          <div class="contact-links">
+          <h3><a href="https://www.cfa.harvard.edu/opportunities/fellowships-visiting-scientist-positions/harvard-postdoctoral-fellowship-future-faculty-leaders/ffl-current-past-fellows"> <b> <p style="color: black;">Future Faculty Leaders Postdoctoral Fellowship </p> </b> </a></h3> </div>
+          <p>Harvard University · Three year postdoctoral fellowship at the Harvard College Observatory.</p>
+        </div>
+      </div>
+      <div class="cv-entry">
+        <span class="cv-year">2018-2020</span>
+        <div class="cv-details">
+          <div class="contact-links">
+          <h3><a href="https://www2.hao.ucar.edu/about/visitor-program/newkirk-fellowship"> <b> <p style="color: black;"> Newkirk Fellowship </p></b></a> </h3> </div>
+          <p>High Altitude Observatory · 9 month visiting graduate student fellowship.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Link to your full CV PDF — upload cv.pdf to your GitHub repo -->
+    <a href="cv.pdf" class="cv-download" target="_blank">
+      ↓ Download full CV (PDF) (coming soon!)
+    </a>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CONTACT -->
+  <section id="contact" class="fade-in">
+    <p class="section-label">Get in touch</p>
+    <div class="contact-links">
+      <!-- <a href="mailto:you@email.com">Email ↗</a> -->
+      <a href="https://github.com/YeimyRivera" target="_blank">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/yeimy-rivera/" target="_blank">LinkedIn ↗</a>
+      <a href="https://bsky.app/profile/yeimyrivera-solar.bsky.social" target="_blank">Bluesky ↗</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Yeimy Rivera. All rights reserved.</p>
+    <p>Built with HTML & CSS</p>
+  </footer>
+
+  <!-- Hover image swap for scientific interests -->
+  <script>
+    function showPanel(id) {
+      document.querySelectorAll('.panel-slide').forEach(el => el.classList.remove('active'));
+      const target = document.getElementById('panel-' + id);
+      if (target) target.classList.add('active');
+    }
+    function resetPanel() {
+      document.querySelectorAll('.panel-slide').forEach(el => el.classList.remove('active'));
+      document.getElementById('panel-default').classList.add('active');
+    }
+  </script>
+
+  <!-- Scroll animation -->
+  <script>
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       ORBITAL PLOT — NASA JPL Horizons, HEEQ frame
+       ═══════════════════════════════════════════════════ -->
+  <script>
+  (function() {
+
+    const BODIES = [
+      { id: '199',  name: 'Mercury',            short: 'Mercury',  color: '#777777', dotR: 6,  planet: true  },
+      { id: '299',  name: 'Venus',              short: 'Venus',    color: '#b5651d', dotR: 6,  planet: true  },
+      { id: '399',  name: 'Earth',              short: 'Earth',    color: '#1565c0', dotR: 7,  planet: true  },
+      { id: '-234', name: 'STEREO-A',           short: 'STA',      color: '#c62828', dotR: 6,  planet: false },
+      { id: '-144', name: 'Solar Orbiter',      short: 'SolO',     color: '#6a1b9a', dotR: 6,  planet: false },
+      { id: '-96',  name: 'Parker Solar Probe', short: 'PSP',      color: '#00695c', dotR: 6,  planet: false },
+    ];
+
+    function fmtDate(d) {
+      return d.getUTCFullYear() + '-' +
+        String(d.getUTCMonth()+1).padStart(2,'0') + '-' +
+        String(d.getUTCDate()).padStart(2,'0');
+    }
+
+    const today = new Date(); today.setUTCHours(0,0,0,0);
+    const past   = new Date(today); past.setUTCDate(past.getUTCDate()-10);
+    const future = new Date(today); future.setUTCDate(future.getUTCDate()+10);
+
+    // ── Horizons fetch ────────────────────────────────────────────────────────
+    async function fetchHorizons(id) {
+      const p = new URLSearchParams({
+        format:'json', COMMAND:`'${id}'`, OBJ_DATA:'NO',
+        MAKE_EPHEM:'YES', EPHEM_TYPE:'VECTORS',
+        CENTER:'500@10', START_TIME:fmtDate(past), STOP_TIME:fmtDate(future),
+        STEP_SIZE:'1d', VEC_TABLE:'2', VEC_LABELS:'NO',
+        OUT_UNITS:'AU-D', CSV_FORMAT:'YES',
+        REF_PLANE:'ECLIPTIC', REF_SYSTEM:'J2000',
+      });
+      const r = await fetch(`https://ssd.jpl.nasa.gov/api/horizons.api?${p}`);
+      if (!r.ok) throw new Error('HTTP '+r.status);
+      const j = await r.json();
+      return parse(j.result);
+    }
+
+    function parse(text) {
+      const pts = [];
+      const s = text.indexOf('$$SOE'), e = text.indexOf('$$EOE');
+      if (s<0||e<0) { console.warn('No SOE/EOE in:\n', text.slice(0,400)); return pts; }
+      const lines = text.slice(s+5,e).trim().split('\n').map(l=>l.trim()).filter(Boolean);
+      const MON = {Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
+      for (let i=0; i<lines.length; i++) {
+        if (!lines[i].includes('= A.D.')) continue;
+        const dm = lines[i].match(/A\.D\.\s+(\d{4})-(\w+)-(\d+)/);
+        const xy = lines[i+1];
+        if (!dm||!xy) continue;
+        const nums = xy.split(',').map(s=>parseFloat(s.trim())).filter(n=>!isNaN(n));
+        if (nums.length<2) continue;
+        const date = new Date(Date.UTC(+dm[1], MON[dm[2]], +dm[3]));
+        pts.push({ date, x:nums[0], y:nums[1] });
+        i+=2;
+      }
+      return pts;
+    }
+
+    // ── Canvas setup ──────────────────────────────────────────────────────────
+    const canvas   = document.getElementById('orbital-canvas');
+    const tooltip  = document.getElementById('orbital-tooltip');
+    const loadDiv  = document.getElementById('orbital-loading');
+    const legendEl = document.getElementById('orbital-legend');
+
+    // Make canvas visible immediately — we'll draw a placeholder then update
+    canvas.style.display = 'block';
+
+    function resize() {
+      const W = canvas.parentElement.clientWidth;
+      canvas.width  = W;
+      canvas.height = Math.round(Math.min(W * 0.85, 620));
+    }
+    resize();
+
+    // Fixed scale: always show out to 1.3 AU so Earth is always visible
+    const FIXED_MAX_AU = 1.3;
+
+    function getLayout() {
+      const W = canvas.width, H = canvas.height;
+      const cx = W/2, cy = H/2;
+      const margin = 55;
+      const scale  = (Math.min(W,H)/2 - margin) / FIXED_MAX_AU;
+      return { W, H, cx, cy, scale };
+    }
+
+    function w2c(x, y, {cx, cy, scale}) {
+      return [cx + x*scale, cy - y*scale];
+    }
+
+    // ── Draw ──────────────────────────────────────────────────────────────────
+    let allData  = {};
+    let todayIdx = {};
+
+    function draw() {
+      resize();
+      const L   = getLayout();
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0,0,L.W,L.H);
+
+      // White background
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0,0,L.W,L.H);
+
+      // ── AU reference rings ───────────────────────────────────────────────
+      [0.25, 0.5, 0.72, 1.0, 1.3].forEach(au => {
+        ctx.beginPath();
+        ctx.arc(L.cx, L.cy, au*L.scale, 0, Math.PI*2);
+        ctx.strokeStyle = au===1.0 ? '#b0c4de' : '#ddd';
+        ctx.lineWidth   = au===1.0 ? 1.5 : 1;
+        ctx.setLineDash(au===1.0 ? [] : [4,5]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        // Label at right side of ring
+        ctx.fillStyle   = '#aaa';
+        ctx.font        = '10px sans-serif';
+        ctx.textAlign   = 'left';
+        ctx.fillText(`${au} AU`, L.cx + au*L.scale + 3, L.cy - 3);
+      });
+
+      // ── Axis lines ───────────────────────────────────────────────────────
+      ctx.strokeStyle = '#ececec';
+      ctx.lineWidth   = 1;
+      ctx.setLineDash([3,7]);
+      ctx.beginPath(); ctx.moveTo(L.cx-L.scale*FIXED_MAX_AU-5,L.cy); ctx.lineTo(L.cx+L.scale*FIXED_MAX_AU+5,L.cy); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(L.cx,L.cy-L.scale*FIXED_MAX_AU-5); ctx.lineTo(L.cx,L.cy+L.scale*FIXED_MAX_AU+5); ctx.stroke();
+      ctx.setLineDash([]);
+
+      // ── Sun ─────────────────────────────────────────────────────────────
+      const sg = ctx.createRadialGradient(L.cx,L.cy,0,L.cx,L.cy,16);
+      sg.addColorStop(0,'#fff8b0'); sg.addColorStop(0.5,'#FDB813'); sg.addColorStop(1,'rgba(253,184,19,0.1)');
+      ctx.beginPath(); ctx.arc(L.cx,L.cy,16,0,Math.PI*2);
+      ctx.fillStyle=sg; ctx.fill();
+      ctx.beginPath(); ctx.arc(L.cx,L.cy,9,0,Math.PI*2);
+      ctx.fillStyle='#FDB813'; ctx.fill();
+      ctx.fillStyle='#999'; ctx.font='bold 10px sans-serif'; ctx.textAlign='center';
+      ctx.fillText('Sun', L.cx, L.cy+22);
+      ctx.textAlign='left';
+
+      // ── Bodies ───────────────────────────────────────────────────────────
+      for (const body of BODIES) {
+        const pts = allData[body.name];
+        if (!pts || pts.length===0) continue;
+        const ti = todayIdx[body.name] ?? 10;
+        const past_   = pts.slice(0, ti+1);
+        const future_ = pts.slice(ti);
+        const c = body.color;
+
+        // Past trail
+        if (past_.length>1) {
+          ctx.beginPath();
+          past_.forEach((p,i)=>{ const [px,py]=w2c(p.x,p.y,L); i?ctx.lineTo(px,py):ctx.moveTo(px,py); });
+          ctx.strokeStyle=c+'cc'; ctx.lineWidth=2; ctx.setLineDash([]); ctx.stroke();
+        }
+        // Future trail
+        if (future_.length>1) {
+          ctx.beginPath();
+          future_.forEach((p,i)=>{ const [px,py]=w2c(p.x,p.y,L); i?ctx.lineTo(px,py):ctx.moveTo(px,py); });
+          ctx.strokeStyle=c+'77'; ctx.lineWidth=1.5; ctx.setLineDash([5,4]); ctx.stroke();
+          ctx.setLineDash([]);
+        }
+
+        // Today dot — white ring + filled circle
+        const tod = pts[ti];
+        const [tx,ty] = w2c(tod.x, tod.y, L);
+        ctx.beginPath(); ctx.arc(tx,ty,body.dotR+2.5,0,Math.PI*2);
+        ctx.fillStyle='#fff'; ctx.fill();
+        ctx.strokeStyle=c; ctx.lineWidth=1.5; ctx.stroke();
+        ctx.beginPath(); ctx.arc(tx,ty,body.dotR,0,Math.PI*2);
+        ctx.fillStyle=c; ctx.fill();
+
+        // Label — short name, smart positioning to avoid Sun overlap
+        const angle = Math.atan2(-(ty-L.cy), tx-L.cx); // angle from center
+        const labelDist = body.dotR + 8;
+        const lx = tx + Math.cos(angle)*labelDist;
+        const ly = ty - Math.sin(angle)*labelDist;
+        ctx.fillStyle = c;
+        ctx.font = `bold ${body.planet?11:10}px sans-serif`;
+        // Decide left/right alignment based on position
+        ctx.textAlign = tx > L.cx ? 'left' : 'right';
+        ctx.fillText(body.short, tx + (tx>L.cx?body.dotR+5:-(body.dotR+5)), ty+4);
+        ctx.textAlign='left';
+      }
+
+      // ── "No data" fallback message ────────────────────────────────────────
+      const loaded = Object.values(allData).filter(d=>d&&d.length>0).length;
+      if (loaded===0 && !loadDiv.style.display.includes('none')) {
+        ctx.fillStyle='#bbb'; ctx.font='13px sans-serif'; ctx.textAlign='center';
+        ctx.fillText('Loading positions from NASA JPL Horizons…', L.cx, L.cy+50);
+        ctx.textAlign='left';
+      }
+    }
+
+    // Draw an empty placeholder immediately
+    draw();
+
+    // ── Legend ────────────────────────────────────────────────────────────────
+    function buildLegend() {
+      legendEl.innerHTML = '';
+      BODIES.forEach(b => {
+        const d = document.createElement('div');
+        d.className='legend-item';
+        d.innerHTML=`<span class="legend-dot" style="background:${b.color};border:1.5px solid ${b.color}"></span>${b.name}`;
+        legendEl.appendChild(d);
+      });
+    }
+    buildLegend();
+
+    // ── Tooltip ───────────────────────────────────────────────────────────────
+    canvas.addEventListener('mousemove', e => {
+      const rect=canvas.getBoundingClientRect();
+      const mx=(e.clientX-rect.left)*(canvas.width/rect.width);
+      const my=(e.clientY-rect.top)*(canvas.height/rect.height);
+      const L=getLayout();
+      let hit=null, best=22;
+      for (const body of BODIES) {
+        const pts=allData[body.name]; if(!pts||!pts.length) continue;
+        const ti=todayIdx[body.name]??10;
+        const [tx,ty]=w2c(pts[ti].x,pts[ti].y,L);
+        const d=Math.hypot(mx-tx,my-ty);
+        if(d<best){best=d;hit={body,pt:pts[ti]};}
+      }
+      if (hit) {
+        const r=Math.sqrt(hit.pt.x**2+hit.pt.y**2).toFixed(3);
+        const lon=((Math.atan2(hit.pt.y,hit.pt.x)*180/Math.PI)+360)%360;
+        tooltip.style.display='block';
+        tooltip.style.left=(e.clientX-rect.left+14)+'px';
+        tooltip.style.top=(e.clientY-rect.top-10)+'px';
+        tooltip.innerHTML=`<strong style="color:${hit.body.color}">${hit.body.name}</strong><br>${fmtDate(hit.pt.date)}<br>r = ${r} AU &nbsp;|&nbsp; lon = ${lon.toFixed(1)}°`;
+      } else { tooltip.style.display='none'; }
+    });
+    canvas.addEventListener('mouseleave',()=>tooltip.style.display='none');
+
+    // ── Fetch all & redraw ────────────────────────────────────────────────────
+    async function init() {
+      await Promise.all(BODIES.map(async body => {
+        try {
+          const pts = await fetchHorizons(body.id);
+          if (!pts.length) { console.warn(body.name+': 0 points parsed'); return; }
+          allData[body.name]  = pts;
+          const ts = fmtDate(today);
+          const idx= pts.findIndex(p=>p.date&&fmtDate(p.date)===ts);
+          todayIdx[body.name] = idx>=0 ? idx : Math.min(10, pts.length-1);
+          console.log(body.name, 'pts:', pts.length, 'todayIdx:', todayIdx[body.name],
+                      'today xy:', pts[todayIdx[body.name]].x.toFixed(3), pts[todayIdx[body.name]].y.toFixed(3));
+        } catch(err) {
+          console.warn('Failed '+body.name+':', err);
+          allData[body.name] = [];
+        }
+      }));
+      loadDiv.style.display = 'none';
+      draw();
+    }
+
+    document.readyState==='loading'
+      ? document.addEventListener('DOMContentLoaded',init)
+      : init();
+
+    window.addEventListener('resize', draw);
+
+  })();
+  </script>
+
+</body>
+</html>
