@@ -11,17 +11,13 @@
     :root {
       --bg: #f9f7f4;
       --text: #1a1a1a;
-      --muted: #6b6b6b;
+      --muted: #888;
       --accent: #2c5f4a;
-      --link: #814646;
       --border: #e2ddd8;
       --card: #ffffff;
     }
 
     html { scroll-behavior: smooth; }
-
-    /* Default color for plain inline text links (About, publications, CV, etc.) */
-    a { color: var(--link); }
 
     body {
       background: var(--bg);
@@ -54,7 +50,7 @@
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a {
       text-decoration: none;
-      color: var(--link);
+      color: var(--muted);
       font-size: 0.88rem;
       font-weight: 400;
       letter-spacing: 0.04em;
@@ -80,7 +76,7 @@
     }
 
     .hero-sun-wrap {
-      flex: 0 0 340px;
+      flex: 0 0 500px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -181,9 +177,7 @@
       max-width: 900px;
       margin: 0 auto;
       padding: 5rem 4rem;
-      scroll-margin-top: 5rem;
     }
-
 
     .section-label {
       font-size: 0.78rem;
@@ -284,7 +278,7 @@
 
     .interests-list li a {
       text-decoration: none;
-      color: var(--link);
+      color: var(--text);
       display: flex;
       align-items: baseline;
       gap: 0.6rem;
@@ -415,66 +409,6 @@
       align-self: center;
     }
 
-    /* ── STUDENT MENTORSHIP ── */
-    .mentee-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .mentee-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      padding: 1.6rem 1.5rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .mentee-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .mentee-role {
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-    }
-
-    .mentee-card h3 {
-      font-size: 1rem;
-      font-weight: 500;
-      margin-bottom: 0.4rem;
-    }
-
-    .mentee-project {
-      font-size: 0.85rem;
-      font-style: italic;
-      color: var(--muted);
-      margin-bottom: 0.6rem;
-      line-height: 1.5;
-    }
-
-    .mentee-desc {
-      font-size: 0.86rem;
-      color: var(--muted);
-      margin-bottom: 0.9rem;
-      line-height: 1.6;
-    }
-
-    .mentee-link {
-      font-size: 0.8rem;
-      font-weight: 500;
-      text-decoration: none;
-    }
-    .mentee-link:hover { color: var(--text); }
-
-    @media (max-width: 700px) {
-      .mentee-grid { grid-template-columns: 1fr; }
-    }
-
     /* ── CV ── */
     .cv-block { margin-bottom: 2.8rem; }
     .cv-block:last-child { margin-bottom: 0; }
@@ -534,25 +468,6 @@
     }
     .cv-download:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
 
-    .news-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-    }
-    .news-list li {
-      padding: 0.7rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .news-list li:last-child { border-bottom: none; }
-    .news-list a {
-      text-decoration: none;
-      color: var(--link);
-      font-size: 0.88rem;
-      line-height: 1.5;
-      transition: color 0.2s;
-    }
-    .news-list a:hover { color: var(--accent); }
-
     @media (max-width: 700px) {
       .cv-entry { grid-template-columns: 1fr; gap: 0.3rem; }
     }
@@ -566,7 +481,7 @@
     .contact-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
     .contact-links a {
       text-decoration: none;
-      color: var(--link);
+      color: var(--muted);
       font-size: 0.88rem;
       font-weight: 400;
       transition: color 0.2s;
@@ -753,10 +668,9 @@
     <a class="nav-logo" href="#">Dr. Yeimy J. Rivera</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
-      <li><a href="#research">Research</a></li>
-      <li><a href="#mentorship">Student Mentorship</a></li>
+      <li><a href="#where-are-they">Current Spacecraft Positions</a></li>
       <li><a href="#science_interests">Scientific Interests</a></li>
-      <li><a href="#where-are-they">Spacecraft Positions</a></li>
+      <li><a href="#research">Research</a></li>
       <li><a href="#cv">CV</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -768,8 +682,7 @@
       <!-- <p class="hero-eyebrow"> /p> -->
       <h2>I'm Yeimy Rivera, a solar Astrophysicist studying our local neighborhood star. </h2>
       <p class="hero-bio">
-        <!-- Edit this to taste — pulled from your About section as a starting point -->
-        I study the physical processes that heat and accelerate the solar corona and solar wind, linking multi-wavelength remote-sensing observations with in-situ measurements from NASA's Parker Solar Probe and ESA's Solar Orbiter.
+        
       </p>
       <div class="hero-cta">
         <a href="#research" class="btn btn-primary">My research work</a>
@@ -838,126 +751,33 @@
 
   <hr class="divider">
 
-  <!-- RESEARCH -->
-  <section id="research" class="fade-in">
-    <p class="section-label">Research</p>
-    <h2>Recent publications<br>&amp; research</h2>
-    <!-- Edit this: a few sentences on your research program and where it's headed —
-         search committees weigh this as heavily as the publication list below. -->
-    <p style="color:var(--muted); font-size:0.98rem; max-width:640px; margin-bottom:2.5rem;">
-      My research program combines multi-wavelength remote-sensing observations of the solar
-      atmosphere with in-situ plasma measurements to determine how the corona is heated and how
-      the solar wind is accelerated. Looking ahead, I plan to [extend this toward — e.g. a specific
-      instrument, mission, or open question you want to lead next].
+  <!-- SPACECRAFT POSITIONS -->
+  <section class="orbital-section fade-in" id="where-are-they">
+    <p class="section-label">Solar System</p>
+    <h2>Where are the spacecraft now?</h2>
+    <p style="color:var(--muted); font-size:0.95rem; margin-top:0.5rem; max-width:1000px;">
+      Current orbital positions of some heliophysics missions and inner heliosphere planets — the past and next 10 days. 
+      Data from NASA JPL Horizons. You can plot spacecraft or planet trajectories in python: <a href="https://github.com/YeimyRivera/Plotting_Spacecraft_Trajectories">plotting trajectories</a>
     </p>
-    <div class="projects-list">
+<!-- 
+    <div class="orbital-container">
+      <canvas id="orbital-canvas"></canvas>
+      <div class="orbital-tooltip" id="orbital-tooltip"></div>
+      <div class="orbital-loading" id="orbital-loading">
+        <div class="orbital-spinner"></div>
+        <span>Fetching positions from NASA JPL Horizons…</span> -->
+      <!-- </div> -->
+      <section>
 
-      <div class="project-card">
-        <div class="project-info">
-          <h3>In situ observations of large-amplitude Alfvén waves heating and accelerating the solar wind</h3>
-          <p> <a href="https://science.nasa.gov/science-research/nasa-esa-missions-help-scientists-uncover-how-solar-wind-gets-energy/">
-              Press release </a> </p>
-          <p>Science · 2024 · This work determines that large-amplitude Alfvén waves, known as magnetic "switchbacks," 
-            provide sufficient energy through damping and mechanical work to drive the heating and 
-            acceleration of the fast solar wind in the inner heliosphere. </p>
-        </div>
-        <a href="Science.pdf" class="project-tag">PDF ↗</a>
-      </div>
+    <h2>Current Orbit Positions</h2>
+    <iframe src="space_map.html" width="100%" height="600px" style="border:none;"></iframe>
+    
 
-      <div class="project-card">
-        <div class="project-info">
-          <h3>Differentiating the Acceleration Mechanisms in the Slow and Alfvénic Slow Solar Wind</h3>
-          <p>The Astrophysical Journal · 2025 · This work indicates that Alfvénic slow solar wind has contributions to its acceleration from both wave pressure and thermal pressure gradients, 
-            while non-Alfvénic slow wind is driven mainly by thermal pressure gradients.</p>
-        </div>
-        <a href="Rivera_2025_ApJ_980_70.pdf" class="project-tag">PDF ↗</a>
-      </div>
-
-      <div class="project-card">
-        <div class="project-info">
-          <h3>Observational Constraints on the Radial Evolution of O6+ Temperature and Differential
-Flow in the Inner Heliosphere </h3>
-          <p>The Astrophysical Journal Letters · 2025 · Analysis of O6+ ions between 0.3 and 1 au indicates that their relative drift and temperature ratio to protons decrease with distance, 
-            following an adiabatic cooling profile that suggests heavy ion heating occurs primarily within 0.3 au of the Sun. </p>
-        </div>
-        <a href="Rivera_2025_ApJL_990_L60.pdf" class="project-tag">PDF ↗</a>
-      </div>
-
-      <div class="project-card">
-        <div class="project-info">
-          <h3>Mixed Source Region Signatures inside Magnetic Switchback Patches </h3>
-          <p>The Astrophysical Journal · 2024 · Based on heavy ion diagnostics from the Solar Orbiter and Parker Solar Probe, 
-            this study found that magnetic switchback patches lack unique elemental or ion composition compared to surrounding solar wind
-          suggesting they are simply embedded within a larger solar wind structure. </p>
-        </div>
-        <a href="Rivera_2024_ApJ_974_198.pdf" class="project-tag">PDF ↗</a>
-      </div>
-
-    </div>
-
-  </section>
-
-  <hr class="divider">
-
-  <!-- STUDENT MENTORSHIP -->
-  <!-- Placeholder section — edit the intro paragraph and each panel below with your real
-       mentees, their projects, and links. This is a section faculty search committees
-       specifically look for. -->
-  <section id="mentorship" class="fade-in">
-    <p class="section-label">Student Mentorship</p>
-    <h2>Student mentorship<br></h2>
-    <div class="about-text" style="max-width:700px; margin-bottom:2.5rem;">
-      <p>
-        Recent projects and publications from <a href="https://www.cfa.harvard.edu/opportunities/graduate-undergraduate-programs/heassp-solar-physics-reu-program"> CfA solar REU</a> student mentees. 
-        The CfA solar REU is a summer intership that brings together 
-        undergraduate students from around the US to participate in an intensive 10-week program in Cambridge, MA. 
-        I've had the pleasure of participating in the program as a mentor since 2021.
-      </p>
-    </div>
-
-    <div class="mentee-grid">
-
-      <!-- Mentee 1 -->
-      <div class="mentee-card">
-        <p class="mentee-role">[REU Student · 2022]</p>
-        <a href="https://madisenjohnson.github.io/"><h3>Madisen Johnson</h3></a>
-        <p class="mentee-project">Helium Abundance Periods Observed by the Solar Probe Cup on Parker Solar Probe: Encounters 1–14</p>
-        <p class="mentee-desc"> A systematic assessement of He abundaces observed by PSP's SPC revealing 87% of the periods examined 
-          are connected to coronal mass ejections (CMEs), with the highest abundance reaching 23.1%. While the helium abundaces of CMEs 
-          increase with during the asceding phase of the solar cycle. </p>
-        <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ad2510/pdf" class="mentee-link">Project link ↗</a>
-      </div>
-
-      <!-- Mentee 2 — replace with real name, role, project, and link -->
-      <div class="mentee-card">
-        <p class="mentee-role">[REU Student · 2023]</p>
-        <h3>Callie A. García</h3>
-        <p class="mentee-project">Tracing a Multitemperature Quiescent Prominence’s Thermodynamic Evolution from Sun to Earth</p>
-        <p class="mentee-desc">Prominences are cool, dense plasma clouds suspended in the Sun's much hotter corona. When they erupt, does that cool plasma heat up, or can some of it survive? 
-Combining remote sensing diagnostics, captured stereoscopically from three vantage points, 
-with in situ measurements of charge states sampled by near the Earth. Together, diagnostics show the erupting 
-prominence heats up substantially, but its central core can survive as cool, weakly ionized plasma beyond the corona.</p>
-        <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ae824d/meta" class="mentee-link">Project link ↗</a>
-      </div>
-
-      <!-- Mentee 3 -->
-      <div class="mentee-card">
-        <p class="mentee-role">[REU student · 2023]</p>
-        <h3>Andi Kisare</h3>
-        <p class="mentee-project">Quantifying the Accuracy of Coronal Models Over the Solar Cycle</p>
-        <p class="mentee-desc"> Quantitatively tested the PFSS solar coronal model against three accuracy metrics and confirmed it performs 
-          worse during solar maximum than solar minimum, as had been suspected but not previously verified. 
-          It was found that the existing white-light metric (Badman et al 2022) poorly captured coronal structure 
-          at solar maximum and developed an improved method for extracting streamer-belt structure to address this, 
-          concluding that non-potential models are preferable for solar-maximum conditions.</p>
-        <a href="https://ui.adsabs.harvard.edu/abs/2023AGUFMSH21D2909K/abstract" class="mentee-link">Project link ↗</a> </p>
-        <a href="https://www.youtube.com/watch?v=bDUpvEtqXk0" class="mentee-link">CfA presentation ↗</a>
-      </div>
-
-      <!-- Add more panels by copying a .mentee-card block above -->
-
-    </div>
-  </section>
+    </section>
+    <!-- </div> -->
+    <!-- <div class="orbital-legend" id="orbital-legend"></div>
+    <p class="orbital-note">Positions in the HEEQ frame. Solid trail is the last and future 10 days · Credit: NASA JPL Horizons</p> -->
+  <!-- </section> -->
 
   <hr class="divider">
 
@@ -1002,16 +822,6 @@ prominence heats up substantially, but its central core can survive as cool, wea
             </a>
           </li>
 
-          <li>
-            <!-- Replace href with your page or external URL for interest 3 -->
-            <!-- <a href="sun-heliosphere.html" -->
-             <a href="https://www.cosmos.esa.int/web/solar-orbiter/-/science-nugget-coordinated-observations-during-the-2024-total-solar-eclipse"
-               onmouseenter="showPanel('interest-4')"
-               onmouseleave="resetPanel()">
-              Total Solar Eclipse Spacecraft, Ground-based, and Airborne Coordination
-            </a>
-          </li>
-
         </ul>
       </div>
 
@@ -1043,12 +853,6 @@ prominence heats up substantially, but its central core can survive as cool, wea
           <div class="panel-caption">Sun-heliosphere connection &amp; solar wind origins</div>
         </div>
 
-        <!-- Interest 4: replace src="interest3.jpg" with your image filename -->
-        <div class="panel-slide" id="panel-interest-4">
-          <img src="eclipse_coordination.jpg" alt="2024 Total Solar Eclipse Coordination">
-          <div class="panel-caption">2024 Total Solar Eclipse Coordination</div>
-        </div>
-
       </div>
 
     </div>
@@ -1056,39 +860,64 @@ prominence heats up substantially, but its central core can survive as cool, wea
 
   <hr class="divider">
 
-  <!-- SPACECRAFT POSITIONS -->
-  <section class="orbital-section fade-in" id="where-are-they">
-    <p class="section-label">Solar System</p>
-    <h2>Where are the spacecraft now?</h2>
-    <p style="color:var(--muted); font-size:0.95rem; margin-top:0.5rem; max-width:1000px;">
-      Current orbital positions of some heliophysics missions and inner heliosphere planets — the past and next 10 days. 
-      Data from NASA JPL Horizons. You can plot spacecraft or planet trajectories in python: <a href="https://github.com/YeimyRivera/Plotting_Spacecraft_Trajectories">plotting trajectories</a>
-    </p>
-<!-- 
-    <div class="orbital-container">
-      <canvas id="orbital-canvas"></canvas>
-      <div class="orbital-tooltip" id="orbital-tooltip"></div>
-      <div class="orbital-loading" id="orbital-loading">
-        <div class="orbital-spinner"></div>
-        <span>Fetching positions from NASA JPL Horizons…</span> -->
-      <!-- </div> -->
-      <section>
+  <!-- RESEARCH -->
+  <section id="research" class="fade-in">
+    <p class="section-label">Research</p>
+    <h2>Recent publications<br>&amp; research</h2>
+    <div class="projects-list">
 
-    <h2>Current Orbit Positions</h2>
-    <iframe src="space_map.html" width="100%" height="600px" style="border:none;"></iframe>
-    
+      <div class="project-card">
+        <div class="project-info">
+          <h3>In situ observations of large-amplitude Alfvén waves heating and accelerating the solar wind</h3>
+          <p> <a href="https://science.nasa.gov/science-research/nasa-esa-missions-help-scientists-uncover-how-solar-wind-gets-energy/">
+              Press release </a> </p>
+          <p>Science · 2024 · This work determines that large-amplitude Alfvén waves, known as magnetic "switchbacks," 
+            provide sufficient energy through damping and mechanical work to drive the heating and 
+            acceleration of the fast solar wind in the inner heliosphere. </p>
+        </div>
+        <a href="Science.pdf" class="project-tag">PDF ↗</a>
+      </div>
 
-    </section>
-    <!-- </div> -->
-    <!-- <div class="orbital-legend" id="orbital-legend"></div>
-    <p class="orbital-note">Positions in the HEEQ frame. Solid trail is the last and future 10 days · Credit: NASA JPL Horizons</p> -->
-  <!-- </section> -->
+      <div class="project-card">
+        <div class="project-info">
+          <h3>Differentiating the Acceleration Mechanisms in the Slow and Alfvénic Slow Solar Wind</h3>
+          <p>The Astrophysical Journal · 2025 · This work indicates that Alfvénic slow solar wind has contributions to its acceleration from both wave pressure and thermal pressure gradients, 
+            while non-Alfvénic slow wind is driven mainly by thermal pressure gradients.</p>
+        </div>
+        <a href="Rivera_2025_ApJ_980_70.pdf" class="project-tag">PDF ↗</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-info">
+          <h3>Observational Constraints on the Radial Evolution of O6+ Temperature and Differential
+Flow in the Inner Heliosphere </h3>
+          <p>The Astrophysical Journal Letters · 2025 · Analysis of O6+ ions between 0.3 and 1 au indicates that their relative drift and temperature ratio to protons decrease with distance, 
+            following an adiabatic cooling profile that suggests heavy ion heating occurs primarily within 0.3 au of the Sun. </p>
+        </div>
+        <a href="Rivera_2025_ApJL_990_L60.pdf" class="project-tag">PDF ↗</a>
+      </div>
+
+    </div>
+
+    <div class="project-card">
+        <div class="project-info">
+          <h3>Mixed Source Region Signatures inside Magnetic Switchback Patches </h3>
+          <p>The Astrophysical Journal · 2024 · Based on heavy ion diagnostics from the Solar Orbiter and Parker Solar Probe, 
+            this study found that magnetic switchback patches lack unique elemental or ion composition compared to surrounding solar wind
+          suggesting they are simply embedded within a larger solar wind structure. </p>
+        </div>
+        <a href="Rivera_2024_ApJ_974_198.pdf" class="project-tag">PDF ↗</a>
+      </div>
+
+    </div>
+
+  </section>
 
   <hr class="divider">
 
   <!-- CV -->
   <section id="cv" class="fade-in">
-    <p class="section-label">Curriculum Vitae (brief)</p>
+    <p class="section-label">Curriculum Vitae</p>
     <h2>Experience &amp;<br>Education</h2>
 
     <div class="cv-block">
@@ -1171,24 +1000,50 @@ prominence heats up substantially, but its central core can survive as cool, wea
 
     <div class="cv-block">
       <p class="cv-block-title">In the news</p>
-      <ul class="news-list">
-        <li><a href="https://theconversation.com/solar-activity-follows-an-11-year-cycle-heres-how-it-controls-eruptions-and-solar-flares-278030" target="_blank">The Conversation: Solar activity follows an 11-year cycle – here's how it controls eruptions and solar flares</a></li>
-        <li><a href="https://theconversation.com/what-are-solar-storms-and-the-solar-wind-3-astrophysicists-explain-how-particles-coming-from-the-sun-interact-with-earth-264013" target="_blank">The Conversation: What are solar storms and the solar wind? 3 astrophysicists explain how particles coming from the Sun interact with Earth</a></li>
-        <li><a href="https://theconversation.com/2-solar-probes-are-helping-researchers-understand-what-phenomenon-powers-the-solar-wind-235286" target="_blank">The Conversation: 2 solar probes are helping researchers understand what phenomenon powers the solar wind</a></li>
-        <li><a href="https://www.cbc.ca/news/science/nasa-sun-parker-solar-probe-1.7418503" target="_blank">CBC interview</a></li>
-        <li><a href="https://video.snapstream.net/Play/8qfPXz81crFG9OviQuwGL?accessToken=d041veo6i8o0" target="_blank">CNN interview</a></li>
-        <li><a href="https://science.nasa.gov/science-research/nasa-esa-missions-help-scientists-uncover-how-solar-wind-gets-energy/" target="_blank">NASA interview and press release</a></li>
-        <li><a href="https://www.esa.int/Science_Exploration/Space_Science/Solar_Orbiter/Solar_Orbiter_shows_how_solar_wind_gets_a_magnetic_push" target="_blank">ESA interview and press release</a></li>
-        <li><a href="https://skyandtelescope.org/astronomy-news/chasing-the-eclipse-from-the-air/" target="_blank">Sky &amp; Telescope magazine interview</a></li>
-        <li><a href="https://www.nationalgeographic.com/premium/article/new-views-of-the-sun-show-the-explosive-churnings-of-our-star" target="_blank">National Geographic magazine interview</a></li>
-      </ul>
+      <div class="cv-entry">
+        <span class="cv-year">  </span>
+
+        <div class="cv-details">
+          <div class="contact-links">
+          <!-- <h3> <b> The Conversation </b> </h3> </div> -->
+          
+
+          <div class="contact-links"> <a href="https://theconversation.com/solar-activity-follows-an-11-year-cycle-heres-how-it-controls-eruptions-and-solar-flares-278030">
+          <p style="color: gray;"> The Conversation: Solar activity follows an 11‑year cycle – here’s how it controls eruptions and solar flares </p> </a> 
+
+          <div class="contact-links"> <a href="https://theconversation.com/what-are-solar-storms-and-the-solar-wind-3-astrophysicists-explain-how-particles-coming-from-the-sun-interact-with-earth-264013">
+          <p style="color: gray;"> The Conversation: What are solar storms and the solar wind? 3 astrophysicists explain how particles coming from the Sun interact with Earth </p> </a> 
+          
+          <div class="contact-links"> <a href="https://theconversation.com/2-solar-probes-are-helping-researchers-understand-what-phenomenon-powers-the-solar-wind-235286">
+          <p style="color: gray;"> The Conversation: 2 solar probes are helping researchers understand what phenomenon powers the solar wind</p> </a> </div>
+
+          <div class="contact-links"> <a href="https://www.cbc.ca/news/science/nasa-sun-parker-solar-probe-1.7418503">
+          <p style="color: gray;"> CBC interview</p> </a> </div>
+          
+          <div class="contact-links"> <a href="https://video.snapstream.net/Play/8qfPXz81crFG9OviQuwGL?accessToken=d041veo6i8o0">
+          <p style="color: gray;"> CNN interview</p> </a> </div>
+          
+          <div class="contact-links"> <a href="https://science.nasa.gov/science-research/nasa-esa-missions-help-scientists-uncover-how-solar-wind-gets-energy/">
+          <p style="color: gray;"> NASA interview and press release</p> </a> </div>
+
+          <div class="contact-links"> <a href="https://www.esa.int/Science_Exploration/Space_Science/Solar_Orbiter/Solar_Orbiter_shows_how_solar_wind_gets_a_magnetic_push">
+          <p style="color: gray;"> ESA interview and press release</p> </a> </div>
+
+          <div class="contact-links"> <a href="https://skyandtelescope.org/astronomy-news/chasing-the-eclipse-from-the-air/">
+          <p style="color: gray;"> Sky & Telescope magazine interview</p> </a> </div>
+
+          <div class="contact-links"> <a href="https://www.nationalgeographic.com/premium/article/new-views-of-the-sun-show-the-explosive-churnings-of-our-star">
+          <p style="color: gray;"> National Geographic magazine interview</p> </a> </div>
+          
+        </div>
+      </div>
+      
     </div>
 
-    <!-- IMPORTANT: upload your actual cv.pdf file alongside index.html for this link to work.
-         This is one of the first things a search committee will click — worth prioritizing. -->
-    <!-- <a href="cv.pdf" class="cv-download" target="_blank"> -->
-      <!-- ↓ Download full CV (PDF) -->
-    <!-- </a> -->
+    <!-- Link to your full CV PDF — upload cv.pdf to your GitHub repo -->
+    <!-- <a href="cv.pdf" class="cv-download" target="_blank">
+      ↓ Download full CV (PDF) (coming soon!)
+    </a> -->
   </section>
 
   <hr class="divider">
@@ -1197,11 +1052,7 @@ prominence heats up substantially, but its central core can survive as cool, wea
   <section id="contact" class="fade-in">
     <p class="section-label">Get in touch</p>
     <div class="contact-links">
-      <!-- Replace with your real email address -->
-      <!-- <a href="mailto:you@cfa.harvard.edu">Email ↗</a> -->
-      <!-- Replace with your real ORCID and Google Scholar profile URLs -->
-      <a href="https://orcid.org/0000-0002-8748-2123" target="_blank">ORCID ↗</a>
-      <a href="https://scholar.google.com/citations?user=dkv17OcAAAAJ&hl=en" target="_blank">Google Scholar ↗</a>
+      <!-- <a href="mailto:you@email.com">Email ↗</a> -->
       <a href="https://github.com/YeimyRivera" target="_blank">GitHub ↗</a>
       <a href="https://www.linkedin.com/in/yeimy-rivera/" target="_blank">LinkedIn ↗</a>
       <a href="https://bsky.app/profile/yeimyrivera-solar.bsky.social" target="_blank">Bluesky ↗</a>
