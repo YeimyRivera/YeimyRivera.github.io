@@ -90,6 +90,18 @@
       box-shadow: 0 0 60px rgba(255, 140, 30, 0.25), 0 0 120px rgba(255, 100, 0, 0.1);
     }
 
+    .hero-sun-wrap video {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 50%;
+      display: block;
+      box-shadow: 0 0 60px rgba(255, 140, 30, 0.25), 0 0 120px rgba(255, 100, 0, 0.1);
+      background: #000;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
     .hero-sun-caption {
       margin-top: 0.75rem;
       font-size: 0.72rem;
@@ -604,6 +616,46 @@
       .about-grid { grid-template-columns: 1fr; }
       .about-photo { order: -1; aspect-ratio: 4/3; }
       footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+
+      /* Stack the hero text and Sun video instead of forcing a fixed 500px column */
+      .hero {
+        flex-direction: column;
+        min-height: auto;
+        padding-top: 6.5rem;
+        gap: 2.5rem;
+        text-align: left;
+      }
+      .hero-sun-wrap {
+        flex: none;
+        width: 100%;
+        max-width: 340px;
+        margin: 0 auto;
+        order: -1;
+      }
+
+      /* Let project cards stack instead of squeezing the tag against the title */
+      .project-card {
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .project-tag { align-self: flex-start; }
+
+      /* Give the embedded orbit map a saner height on small screens */
+      #where-are-they iframe { height: 380px; }
+    }
+
+    @media (max-width: 480px) {
+      body { font-size: 15.5px; }
+      nav { padding: 1rem; }
+      .nav-logo { font-size: 1.05rem; }
+      nav { flex-wrap: wrap; row-gap: 0.6rem; }
+      .nav-links { gap: 0.9rem; flex-wrap: wrap; justify-content: center; width: 100%; }
+      .nav-links a { font-size: 0.76rem; }
+      .hero, section { padding-left: 1.1rem; padding-right: 1.1rem; }
+      .hero { padding-top: 8.5rem; }
+      .hero-sun-wrap { max-width: 260px; }
+      .btn { padding: 0.65rem 1.3rem; font-size: 0.82rem; }
+      .cv-year { padding-top: 0; }
     }
   </style>
 </head>
@@ -636,20 +688,24 @@
       </div>
     </div>
 
-    <!-- Live SDO/AIA 171Å EUV image of the Sun, served directly from NASA -->
+    <!-- Live SDO/AIA 193Å EUV movie of the Sun, served directly from NASA -->
     <div class="hero-sun-wrap">
-      <!-- <img
-        src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_4096_0211pfss.jpg"
-        alt="The Sun right now in extreme ultraviolet light (211Å) from SDO/AIA"
-      /> -->
-      <video controls width="640">
-      <source 
-          src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_1024_0193.mp4" type="video/mp4">
-          alt="The Sun right now in extreme ultraviolet light (211Å) from SDO/AIA"
+      <video
+        class="hero-sun-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        controls
+        preload="metadata"
+        aria-label="The Sun right now in extreme ultraviolet light (193Å) from SDO/AIA"
+      >
+        <source src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_1024_0193.mp4" type="video/mp4">
+        Your browser does not support embedded video.
       </video>
       <p class="hero-sun-caption">
-        The Sun today in EUV (211 Å) with a simulated coronal magnetic field· <br>
-        <span style="font-size:0.68rem; opacity:0.7;">Image updates automatically. Image: SDO/AIA · NASA</span>
+        The Sun today in EUV (193 Å)· <br>
+        <span style="font-size:0.68rem; opacity:0.7;">Movie updates automatically. Video: SDO/AIA · NASA</span>
       </p>
     </div>
 
